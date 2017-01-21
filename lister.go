@@ -2,19 +2,18 @@ package main
 
 import (
 	"fmt"
-	"flag"
-	"os"
 	"io/ioutil"
+	"github.com/vthub/file-lister/manager"
+	"os"
 )
 
 func main() {
-	var path = flag.String("dir", ".", "directory to be scanned")
-	flag.Parse()
-	fmt.Println("Directory to be scanned", *path)
-	if pathStat, err := os.Stat(*path); err != nil || !pathStat.IsDir() {
-		fmt.Println("Sorry, cannot list", *path)
+	var conf, err = manager.Parse()
+	if(err != nil) {
+		fmt.Println(err.Error())
+		os.Exit(1)
 	}
-	infos, err := ioutil.ReadDir(*path);
+	infos, err := ioutil.ReadDir(conf.Path);
 	if err != nil {
 		fmt.Println("Error during path listing");
 	}

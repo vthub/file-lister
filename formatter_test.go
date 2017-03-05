@@ -2,6 +2,7 @@ package main
 
 import (
 	"testing"
+	"github.com/stretchr/testify/assert"
 )
 
 type StubInfo struct{}
@@ -15,7 +16,7 @@ func (into StubInfo) Size() int64 {
 
 func TestFormat(t *testing.T) {
 	f := DefaultFormatter{}
-	assertEqual(t, f.format("%p %s", StubInfo{}), "path 10")
-	assertEqual(t, f.format("%p,%s", StubInfo{}), "path,10")
-	assertEqual(t, f.format("%s%p", StubInfo{}), "10path")
+	assert.Equal(t, f.Format("%p %s", StubInfo{}), "path 10")
+	assert.Equal(t, f.Format("%p,%s", StubInfo{}), "path,10")
+	assert.Equal(t, f.Format("%s%p", StubInfo{}), "10path")
 }

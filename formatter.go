@@ -41,13 +41,13 @@ var defaultFlags = []Flag{
 }
 
 type Formatter interface {
-	format(formatString string, info InfoProvider) string
+	Format(formatString string, info InfoProvider) string
 }
 
 type DefaultFormatter struct {
 }
 
-func (f DefaultFormatter) format(formatString string, info InfoProvider) string {
+func (f DefaultFormatter) Format(formatString string, info InfoProvider) string {
 	var tmp = formatString
 	for _, flag := range defaultFlags {
 		tmp = strings.Replace(tmp, "%" + flag.flag, flag.function(info), -1)

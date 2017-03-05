@@ -12,7 +12,7 @@ type Collector struct {
 }
 
 func (c Collector) collect(path string, f os.FileInfo, err error) error {
-	fmt.Println(c.formatter.format(c.formatString, FileInfoProvider{info: f}))
+	fmt.Println(c.formatter.Format(c.formatString, FileInfoProvider{info: f}))
 	return nil
 }
 
